@@ -185,6 +185,30 @@
 					]
 				},
 				{
+					"name": "locations",
+					"item": [
+						{
+							"name": "list",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/locations/list",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"locations",
+										"list"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
 					"name": "ping",
 					"request": {
 						"method": "GET",
