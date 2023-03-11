@@ -42,10 +42,10 @@ CREATE TABLE IF NOT EXISTS public.season
 CREATE TABLE IF NOT EXISTS public.appointment
 (
     id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 ),
-    name character varying(40),
-    locationid integer,
-    season integer,
-    date date,
+    name character varying(40) NOT NULL,
+    locationid integer NOT NULL,
+    season integer NOT NULL,
+    date timestamp with time zone NOT NULL,
     PRIMARY KEY (id)
 );
 
@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS public.checkin
     userid integer NOT NULL,
     groupid integer NOT NULL,
     appointmentid integer NOT NULL,
-    date date NOT NULL,
+    date timestamp with time zone NOT NULL,
     PRIMARY KEY (userid, groupid, appointmentid)
 );
 
