@@ -8,7 +8,7 @@ import (
 )
 
 // create user
-func createUserHandler(c *gin.Context) {
+func CreateUserHandler(c *gin.Context) {
 	var user model.User
 	if err := c.ShouldBindJSON(&user); err != nil {
 		c.IndentedJSON(400, gin.H{
@@ -41,7 +41,7 @@ func createUserHandler(c *gin.Context) {
 }
 
 // delete user
-func deleteUserHandler(c *gin.Context) {
+func DeleteUserHandler(c *gin.Context) {
 	id, err := getIdFromParam(c, "id")
 	if err != nil {
 		return

@@ -5,7 +5,7 @@ import (
 	"github.com/taskmedia/processionCheckIn/pkg/backend/db"
 )
 
-func exampledataHandler(c *gin.Context) {
+func ExampledataHandler(c *gin.Context) {
 	c.IndentedJSON(501, gin.H{
 		"message": "Not implemented",
 	})

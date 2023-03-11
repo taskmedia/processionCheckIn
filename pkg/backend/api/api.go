@@ -19,19 +19,44 @@ func ApiRouters(router *gin.RouterGroup) {
 	}{
 		{
 			"/db",
-			db.DbRouters,
+			func(router *gin.RouterGroup) {
+				router.GET("/init", db.InitHandler)
+				router.GET("/reset", db.ResetHandler)
+				router.GET("/exampledata", db.ExampledataHandler)
+			},
 		},
 		{
 			"/groups",
-			group.GroupsRouters,
+			func(router *gin.RouterGroup) {
+				router.GET("/", group.ListGroupHandler)
+				router.GET("/list", group.ListGroupHandler)
+				// router.GET("/:id", nil)
+
+				// router.POST("/", nil)
+				// router.DELETE("/:id", nil)
+			},
 		},
 		{
 			"/locations",
-			location.LocationsRouters,
+			func(router *gin.RouterGroup) {
+				router.GET("/", location.ListLocationHandler)
+				router.GET("/list", location.ListLocationHandler)
+				// router.GET("/:id", nil)
+
+				// router.POST("/", nil)
+				// router.DELETE("/:id", nil)}
+			},
 		},
 		{
 			"/users",
-			user.UsersRouters,
+			func(router *gin.RouterGroup) {
+				router.GET("/", user.ListUsersHandler)
+				router.GET("/list", user.ListUsersHandler)
+				router.GET("/:id", user.ListUserHandler)
+
+				router.POST("/", user.CreateUserHandler)
+				router.DELETE("/:id", user.DeleteUserHandler)
+			},
 		},
 	}
 

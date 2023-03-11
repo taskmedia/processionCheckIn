@@ -5,7 +5,7 @@ import (
 	"github.com/taskmedia/processionCheckIn/pkg/backend/db"
 )
 
-func resetHandler(c *gin.Context) {
+func ResetHandler(c *gin.Context) {
 	c.IndentedJSON(501, gin.H{
 		"message": "Not implemented",
 	})

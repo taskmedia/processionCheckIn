@@ -7,11 +7,11 @@ import (
 	"github.com/taskmedia/processionCheckIn/pkg/backend/db"
 )
 
-func listUsersHandler(c *gin.Context) {
+func ListUsersHandler(c *gin.Context) {
 	generic.HandleListRequest(c, db.GetUsers)
 }
 
-func listUserHandler(c *gin.Context) {
+func ListUserHandler(c *gin.Context) {
 	id, err := getIdFromParam(c, "id")
 	if err != nil {
 		return
