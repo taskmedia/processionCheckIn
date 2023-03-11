@@ -1,10 +1,40 @@
 package db
 
 import (
+	"fmt"
+
 	_ "github.com/lib/pq"
 	// _ "github.com/taskmedia/processionCheckIn/pkg/backend/db/connection"
 	"github.com/taskmedia/processionCheckIn/pkg/backend/db/model"
 )
+
+func CreateUser(user model.User) (model.User, error) {
+	query := "INSERT INTO public.\"user\" (firstname, lastname) VALUES ($1, $2) RETURNING id;"
+	err := DbConn.QueryRow(query, user.Firstname, user.Lastname).Scan(&user.ID)
+	if err != nil {
+		return user, err
+	}
+
+	return user, nil
+}
+
+func DeleteUser(id int) error {
+	query := "DELETE FROM public.\"user\" WHERE id = $1;"
+
+	result, err := DbConn.Exec(query, id)
+
+	rowsAffected, err := result.RowsAffected()
+	if err != nil {
+		return err
+	}
+
+	// check if user was deleted
+	if rowsAffected == 0 {
+		return fmt.Errorf("db.DeleteUser did not delete any rows")
+	}
+
+	return nil
+}
 
 func GetUser(id int) (model.User, error) {
 	query := "SELECT id, firstname, lastname FROM public.\"user\" WHERE id = $1;"
