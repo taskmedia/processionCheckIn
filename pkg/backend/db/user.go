@@ -10,7 +10,7 @@ import (
 )
 
 func GetUsers() ([]model.User, error) {
-	query := "SELECT id, firstname, lastname FROM public.\"user\";;"
+	query := "SELECT id, firstname, lastname FROM public.\"user\";"
 
 	db, err := sql.Open("postgres", "dbname=postgres user=postgres password=7z2Czy8s61 host=localhost port=5432 sslmode=disable")
 	if err != nil {
