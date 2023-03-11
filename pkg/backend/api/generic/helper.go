@@ -1,4 +1,4 @@
-package user
+package generic
 
 import (
 	"strconv"
@@ -6,6 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// TODO: rename helper file or put it somewhere else...
 func getIdFromParam(c *gin.Context, param string) (int, error) {
 	param_id := c.Param(param)
 	id, err := strconv.Atoi(param_id)

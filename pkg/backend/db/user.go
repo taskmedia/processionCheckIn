@@ -4,6 +4,8 @@ import (
 	"fmt"
 
 	_ "github.com/lib/pq"
+	"github.com/sirupsen/logrus"
+	log "github.com/sirupsen/logrus"
 
 	"github.com/taskmedia/processionCheckIn/pkg/backend/db/model"
 )
@@ -33,7 +35,7 @@ func CreateUser(user model.User) (model.User, error) {
 func DeleteUser(id int) error {
 	// check if user exists
 	if !checkUserExists(id) {
-		return fmt.Errorf("db.DeleteUser user does not exist")
+		return fmt.Errorf("id does not exist")
 	}
 
 	query := "DELETE FROM public.\"user\" WHERE id = $1;"
@@ -55,12 +57,16 @@ func DeleteUser(id int) error {
 	return nil
 }
 
-func GetUser(id int) (model.User, error) {
+func GetUser(id int) (interface{}, error) {
 	query := "SELECT id, firstname, lastname FROM public.\"user\" WHERE id = $1;"
 
 	var user model.User
 
 	if err := DbConn.QueryRow(query, id).Scan(&user.ID, &user.Firstname, &user.Lastname); err != nil {
+		log.WithFields(logrus.Fields{
+			"error": err.Error(),
+		}).Error("Error getting user from database in GetUser")
+
 		return user, err
 	}
 
