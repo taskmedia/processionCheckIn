@@ -14,8 +14,7 @@ func ResetDb() {
 }
 
 func ResetDbExampledata() {
-	dropDb()
-	InitDb()
+	ResetDb()
 
 	executePsqlFile("./psql/exampledata.psql")
 }
