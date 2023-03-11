@@ -28,8 +28,8 @@ func ApiRouters(router *gin.RouterGroup) {
 		{
 			"/groups",
 			func(router *gin.RouterGroup) {
-				router.GET("/", group.ListGroupHandler)
-				router.GET("/list", group.ListGroupHandler)
+				router.GET("/", group.ListGroupsHandler)
+				router.GET("/list", group.ListGroupsHandler)
 				// router.GET("/:id", nil)
 
 				// router.POST("/", nil)
@@ -39,8 +39,8 @@ func ApiRouters(router *gin.RouterGroup) {
 		{
 			"/locations",
 			func(router *gin.RouterGroup) {
-				router.GET("/", location.ListLocationHandler)
-				router.GET("/list", location.ListLocationHandler)
+				router.GET("/", location.ListLocationsHandler)
+				router.GET("/list", location.ListLocationsHandler)
 				// router.GET("/:id", nil)
 
 				// router.POST("/", nil)

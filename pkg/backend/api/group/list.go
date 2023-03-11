@@ -6,6 +6,6 @@ import (
 	"github.com/taskmedia/processionCheckIn/pkg/backend/db"
 )
 
-func listGroupHandler(c *gin.Context) {
+func ListGroupsHandler(c *gin.Context) {
 	generic.HandleListRequest(c, db.GetGroups)
 }

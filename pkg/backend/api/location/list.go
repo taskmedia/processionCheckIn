@@ -6,6 +6,6 @@ import (
 	"github.com/taskmedia/processionCheckIn/pkg/backend/db"
 )
 
-func ListLocationHandler(c *gin.Context) {
+func ListLocationsHandler(c *gin.Context) {
 	generic.HandleListRequest(c, db.GetLocations)
 }
