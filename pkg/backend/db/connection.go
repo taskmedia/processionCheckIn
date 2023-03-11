@@ -6,13 +6,22 @@ import (
 	"os"
 
 	_ "github.com/lib/pq"
+	"github.com/taskmedia/processionCheckIn/pkg/cmd/parameter"
 )
 
 var DbConn *sql.DB
 
 func init() {
 	var err error
-	DbConn, err = sql.Open("postgres", "dbname=postgres user=postgres password=7z2Czy8s61 host=localhost port=5432 sslmode=disable")
+	sqlConnStr := fmt.Sprintf("dbname=%s user=%s password=%s host=%s port=%d sslmode=disable",
+		*parameter.PsqlDb,
+		*parameter.PsqlUser,
+		*parameter.PsqlPassword,
+		*parameter.PsqlHost,
+		*parameter.PsqlPort,
+	)
+
+	DbConn, err = sql.Open("postgres", sqlConnStr)
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
