@@ -17,7 +17,7 @@ func GetGroups() (interface{}, error) {
 
 	for rows.Next() {
 		var group model.Group
-		if err := rows.Scan(&group.ID, &group.Name); err != nil {
+		if err := rows.Scan(&group.Id, &group.Name); err != nil {
 			return nil, err
 		}
 		groups = append(groups, group)

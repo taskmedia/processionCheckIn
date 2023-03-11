@@ -17,7 +17,7 @@ func GetLocations() (interface{}, error) {
 
 	for rows.Next() {
 		var location model.Location
-		if err := rows.Scan(&location.ID, &location.Name); err != nil {
+		if err := rows.Scan(&location.Id, &location.Name); err != nil {
 			return nil, err
 		}
 		locations = append(locations, location)

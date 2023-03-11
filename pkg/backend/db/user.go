@@ -14,7 +14,7 @@ import (
 func checkUserExists(id int) bool {
 	var user model.User
 
-	if err := DbConn.QueryRow(SELECT_USERID_BY_ID, id).Scan(&user.ID); err != nil {
+	if err := DbConn.QueryRow(SELECT_USERID_BY_ID, id).Scan(&user.Id); err != nil {
 		return false
 	}
 
@@ -35,12 +35,12 @@ func CreateUser(c *gin.Context) (int, error) {
 		return -1, err
 	}
 
-	err := DbConn.QueryRow(INSERT_USER, user.Firstname, user.Lastname).Scan(&user.ID)
+	err := DbConn.QueryRow(INSERT_USER, user.Firstname, user.Lastname).Scan(&user.Id)
 	if err != nil {
 		return -1, err
 	}
 
-	return user.ID, nil
+	return user.Id, nil
 }
 
 func DeleteUser(id int) error {
@@ -70,7 +70,7 @@ func DeleteUser(id int) error {
 func GetUser(id int) (interface{}, error) {
 	var user model.User
 
-	if err := DbConn.QueryRow(SELECT_USER_BY_ID, id).Scan(&user.ID, &user.Firstname, &user.Lastname); err != nil {
+	if err := DbConn.QueryRow(SELECT_USER_BY_ID, id).Scan(&user.Id, &user.Firstname, &user.Lastname); err != nil {
 		log.WithFields(logrus.Fields{
 			"error": err.Error(),
 		}).Error("Error getting user from database in GetUser")
@@ -92,7 +92,7 @@ func GetUsers() (interface{}, error) {
 
 	for rows.Next() {
 		var user model.User
-		if err := rows.Scan(&user.ID, &user.Firstname, &user.Lastname); err != nil {
+		if err := rows.Scan(&user.Id, &user.Firstname, &user.Lastname); err != nil {
 			return nil, err
 		}
 		users = append(users, user)
