@@ -30,9 +30,20 @@ func CreateUser(c *gin.Context) (int, error) {
 
 		log.WithFields(log.Fields{
 			"error": err.Error(),
-		}).Error("Error binding JSON in HandleCreateRequests")
+		}).Error("Error binding JSON in CreateUser")
 
 		return -1, err
+	}
+
+	if user.Firstname == "" || user.Lastname == "" {
+		c.IndentedJSON(400, gin.H{
+			"message": "Bad request",
+			"error":   "firstname or lastname is empty",
+		})
+
+		log.Error("Error binding JSON in CreateUser (firstname or lastname is empty)")
+
+		return -1, fmt.Errorf("firstname or lastname is empty")
 	}
 
 	err := DbConn.QueryRow(INSERT_USER, user.Firstname, user.Lastname).Scan(&user.Id)
