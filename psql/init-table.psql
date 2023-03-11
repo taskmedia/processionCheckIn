@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS public.appointment
     name character varying(40) NOT NULL,
     locationid integer NOT NULL,
     season integer NOT NULL,
-    date timestamp with time zone NOT NULL,
+    "timestamp" timestamp with time zone NOT NULL,
     PRIMARY KEY (id)
 );
 
@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS public.checkin
     userid integer NOT NULL,
     groupid integer NOT NULL,
     appointmentid integer NOT NULL,
-    date timestamp with time zone NOT NULL,
+    "timestamp" timestamp with time zone NOT NULL,
     PRIMARY KEY (userid, groupid, appointmentid)
 );
 
