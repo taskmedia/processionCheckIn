@@ -4,9 +4,22 @@ import (
 	"fmt"
 
 	_ "github.com/lib/pq"
+
 	// _ "github.com/taskmedia/processionCheckIn/pkg/backend/db/connection"
 	"github.com/taskmedia/processionCheckIn/pkg/backend/db/model"
 )
+
+func checkUserExists(id int) bool {
+	query := "SELECT id FROM public.\"user\" WHERE id = $1;"
+
+	var user model.User
+
+	if err := DbConn.QueryRow(query, id).Scan(&user.ID); err != nil {
+		return false
+	}
+
+	return true
+}
 
 func CreateUser(user model.User) (model.User, error) {
 	query := "INSERT INTO public.\"user\" (firstname, lastname) VALUES ($1, $2) RETURNING id;"
@@ -19,9 +32,16 @@ func CreateUser(user model.User) (model.User, error) {
 }
 
 func DeleteUser(id int) error {
-	query := "DELETE FROM public.\"user\" WHERE id = $1;"
+	// check if user exists
+	if !checkUserExists(id) {
+		return fmt.Errorf("db.DeleteUser user does not exist")
+	}
 
+	query := "DELETE FROM public.\"user\" WHERE id = $1;"
 	result, err := DbConn.Exec(query, id)
+	if err != nil {
+		return err
+	}
 
 	rowsAffected, err := result.RowsAffected()
 	if err != nil {

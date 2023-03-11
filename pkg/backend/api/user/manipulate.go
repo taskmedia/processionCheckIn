@@ -49,6 +49,20 @@ func deleteUserHandler(c *gin.Context) {
 
 	err = db.DeleteUser(id)
 	if err != nil {
+		if err.Error() == "db.DeleteUser user does not exist" {
+
+			c.IndentedJSON(404, gin.H{
+				"id":      id,
+				"message": "User not found",
+			})
+
+			log.WithFields(log.Fields{
+				"id": id,
+			}).Error("Error deleting not existing user in DeleteUser")
+
+			return
+		}
+
 		c.IndentedJSON(500, gin.H{
 			"message": "Internal server error",
 		})
