@@ -6,7 +6,7 @@ import (
 )
 
 func resetHandler(c *gin.Context) {
-	c.JSON(501, gin.H{
+	c.IndentedJSON(501, gin.H{
 		"message": "Not implemented",
 	})
 

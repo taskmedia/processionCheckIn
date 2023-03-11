@@ -11,7 +11,7 @@ import (
 func listHandler(c *gin.Context) {
 	users, err := db.GetUsers()
 	if err != nil {
-		c.JSON(500, gin.H{
+		c.IndentedJSON(500, gin.H{
 			"message": "Internal server error",
 			"error":   err.Error(),
 		})
@@ -25,7 +25,7 @@ func userHandler(c *gin.Context) {
 	param_id := c.Param("id")
 	id, err := strconv.Atoi(param_id)
 	if err != nil {
-		c.JSON(400, gin.H{
+		c.IndentedJSON(400, gin.H{
 			"message": "Bad request",
 			"error":   "Invalid id - must be an integer",
 		})
@@ -36,7 +36,7 @@ func userHandler(c *gin.Context) {
 
 	if err != nil {
 		if err.Error() == "sql: no rows in result set" {
-			c.JSON(404, gin.H{
+			c.IndentedJSON(404, gin.H{
 				"message": "Not found",
 				"error":   "User not found",
 				"id":      id,
@@ -44,7 +44,7 @@ func userHandler(c *gin.Context) {
 			return
 		}
 
-		c.JSON(500, gin.H{
+		c.IndentedJSON(500, gin.H{
 			"message": "Internal server error",
 		})
 
@@ -55,5 +55,5 @@ func userHandler(c *gin.Context) {
 		return
 	}
 
-	c.JSON(200, user)
+	c.IndentedJSON(200, user)
 }

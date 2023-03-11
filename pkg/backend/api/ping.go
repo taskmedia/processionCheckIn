@@ -5,7 +5,7 @@ import (
 )
 
 func pingHandler(c *gin.Context) {
-	c.JSON(200, gin.H{
+	c.IndentedJSON(200, gin.H{
 		"message": "pong",
 	})
 }

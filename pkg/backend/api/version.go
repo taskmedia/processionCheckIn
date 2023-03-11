@@ -6,7 +6,7 @@ import (
 )
 
 func VersionHandler(c *gin.Context) {
-	c.JSON(200, gin.H{
+	c.IndentedJSON(200, gin.H{
 		"version":  version.VERSION,
 		"revision": version.REVISION,
 		"commit":   version.COMMIT,
