@@ -3,20 +3,12 @@ package user
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
+	"github.com/taskmedia/processionCheckIn/pkg/backend/api/generic"
 	"github.com/taskmedia/processionCheckIn/pkg/backend/db"
 )
 
 func listUsersHandler(c *gin.Context) {
-	users, err := db.GetUsers()
-	if err != nil {
-		c.IndentedJSON(500, gin.H{
-			"message": "Internal server error",
-			"error":   err.Error(),
-		})
-		return
-	}
-
-	c.IndentedJSON(200, users)
+	generic.HandleListRequest(c, db.GetUsers)
 }
 
 func listUserHandler(c *gin.Context) {

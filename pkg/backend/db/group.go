@@ -3,11 +3,10 @@ package db
 import (
 	_ "github.com/lib/pq"
 
-	// _ "github.com/taskmedia/processionCheckIn/pkg/backend/db/connection"
 	"github.com/taskmedia/processionCheckIn/pkg/backend/db/model"
 )
 
-func GetGroups() ([]model.Group, error) {
+func GetGroups() (interface{}, error) {
 	query := "SELECT id, name FROM public.\"group\";"
 
 	rows, err := DbConn.Query(query)

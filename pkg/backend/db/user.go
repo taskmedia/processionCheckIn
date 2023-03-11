@@ -5,7 +5,6 @@ import (
 
 	_ "github.com/lib/pq"
 
-	// _ "github.com/taskmedia/processionCheckIn/pkg/backend/db/connection"
 	"github.com/taskmedia/processionCheckIn/pkg/backend/db/model"
 )
 
@@ -68,7 +67,7 @@ func GetUser(id int) (model.User, error) {
 	return user, nil
 }
 
-func GetUsers() ([]model.User, error) {
+func GetUsers() (interface{}, error) {
 	query := "SELECT id, firstname, lastname FROM public.\"user\";"
 
 	rows, err := DbConn.Query(query)
