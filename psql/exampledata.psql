@@ -28,4 +28,35 @@ VALUES
     ('Chur'),
     ('Dublin');
 
+INSERT INTO public.group(
+    name)
+VALUES
+    ('AC/DC'),
+    ('Billy Talent');
+
+INSERT INTO public.groupmembership(
+    userid, groupid)
+VALUES
+    (01, 1),
+    (02, 1),
+    (03, 1),
+    (04, 1),
+    (05, 1),
+    (06, 2),
+    (07, 2),
+    (08, 2),
+    (09, 2),
+    (10, 2);
+
+INSERT INTO public.appointment(
+    name, locationid, season, timestamp)
+VALUES
+    ('Ausgabe', 1, 1,  '2023-01-01 12:00:00 CET'),
+    ('Umzug', 2, 1, '2023-01-02 12:00:00 CET'),
+    ('Umzug', 3, 1, '2023-01-03 12:00:00 CET'),
+    ('Nachtumzug', 4, 1, '2023-01-04 12:00:00 CET'),
+    ('Ball', 1, 1, '2023-01-05 12:00:00 CET'),
+    ('Ausgabe', 1, 2, '2024-01-06 12:00:00 CET'),
+    ('Umzug', 2, 2, '2024-01-07 12:00:00 CET');
+
 END;
