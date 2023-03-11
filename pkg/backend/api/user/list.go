@@ -8,7 +8,7 @@ import (
 	"github.com/taskmedia/processionCheckIn/pkg/backend/db"
 )
 
-func listHandler(c *gin.Context) {
+func listUsersHandler(c *gin.Context) {
 	users, err := db.GetUsers()
 	if err != nil {
 		c.IndentedJSON(500, gin.H{
@@ -21,7 +21,7 @@ func listHandler(c *gin.Context) {
 	c.IndentedJSON(200, users)
 }
 
-func userHandler(c *gin.Context) {
+func listUserHandler(c *gin.Context) {
 	param_id := c.Param("id")
 	id, err := strconv.Atoi(param_id)
 	if err != nil {
