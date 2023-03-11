@@ -5,13 +5,13 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-func HandleListIdRequest(c *gin.Context, getDataFunc func(id int) (interface{}, error)) {
+func HandleListIdRequest(c *gin.Context, listIdFunc func(id int) (interface{}, error)) {
 	id, err := getIdFromParam(c, "id")
 	if err != nil {
 		return
 	}
 
-	data, err := getDataFunc(id)
+	data, err := listIdFunc(id)
 	if err != nil {
 		if err.Error() == "sql: no rows in result set" {
 			c.IndentedJSON(404, gin.H{
@@ -37,8 +37,8 @@ func HandleListIdRequest(c *gin.Context, getDataFunc func(id int) (interface{}, 
 	c.IndentedJSON(200, data)
 }
 
-func HandleListRequest(c *gin.Context, getDataFunc func() (interface{}, error)) {
-	data, err := getDataFunc()
+func HandleListRequest(c *gin.Context, listFunc func() (interface{}, error)) {
+	data, err := listFunc()
 	if err != nil {
 		c.IndentedJSON(500, gin.H{
 			"message": "Internal server error",
