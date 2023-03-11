@@ -3,6 +3,7 @@ package db
 import (
 	"fmt"
 
+	"github.com/gin-gonic/gin"
 	_ "github.com/lib/pq"
 	"github.com/sirupsen/logrus"
 	log "github.com/sirupsen/logrus"
@@ -20,13 +21,26 @@ func checkUserExists(id int) bool {
 	return true
 }
 
-func CreateUser(user model.User) (model.User, error) {
-	err := DbConn.QueryRow(INSERT_USER, user.Firstname, user.Lastname).Scan(&user.ID)
-	if err != nil {
-		return user, err
+func CreateUser(c *gin.Context) (int, error) {
+	var user model.User
+	if err := c.ShouldBindJSON(&user); err != nil {
+		c.IndentedJSON(400, gin.H{
+			"message": "Bad request",
+		})
+
+		log.WithFields(log.Fields{
+			"error": err.Error(),
+		}).Error("Error binding JSON in HandleCreateRequests")
+
+		return -1, err
 	}
 
-	return user, nil
+	err := DbConn.QueryRow(INSERT_USER, user.Firstname, user.Lastname).Scan(&user.ID)
+	if err != nil {
+		return -1, err
+	}
+
+	return user.ID, nil
 }
 
 func DeleteUser(id int) error {

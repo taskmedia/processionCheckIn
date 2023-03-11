@@ -5,6 +5,25 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
+func HandleCreateRequests(c *gin.Context, createFunc func(*gin.Context) (int, error)) {
+	id, err := createFunc(c)
+	if err != nil {
+		c.IndentedJSON(500, gin.H{
+			"message": "Internal server error",
+		})
+
+		log.WithFields(log.Fields{
+			"error": err.Error(),
+		}).Error("Error creating item in database in HandleCreateRequests")
+
+		return
+	}
+
+	c.IndentedJSON(201, gin.H{
+		"id": id,
+	})
+}
+
 func HandleDeleteIdRequest(c *gin.Context, deleteFunc func(id int) error) {
 	id, err := getIdFromParam(c, "id")
 	if err != nil {
