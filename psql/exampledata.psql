@@ -1,0 +1,31 @@
+BEGIN;
+
+INSERT INTO public.user(
+    firstname, lastname)
+VALUES
+    ('Antonia','Aggenstein'),
+    ('Bettina','Biberkopf'),
+    ('Clemens','Casanna'),
+    ('Dirk','Dreierköpfel'),
+    ('Emma','Entschenkopf'),
+    ('Fred','Fellhorn'),
+    ('Gottlob','Grünten'),
+    ('Hans','Hochgrat'),
+    ('Ines','Ifen'),
+    ('Jannik','Jochspitze');
+
+INSERT INTO public.season(
+    name)
+VALUES
+    ('2022 / 2023'),
+    ('2023 / 2024');
+
+INSERT INTO public.location(
+    name)
+VALUES
+    ('Amsterdam'),
+    ('Berlin'),
+    ('Chur'),
+    ('Dublin');
+
+END;

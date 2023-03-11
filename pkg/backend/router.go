@@ -20,7 +20,6 @@ func SetupRouter() *gin.Engine {
 	r.GET("/version", api.VersionHandler)
 
 	apiRouter := r.Group("/api")
-
 	api.ApiRouters(apiRouter)
 
 	return r
