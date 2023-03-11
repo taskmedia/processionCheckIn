@@ -11,11 +11,9 @@ import (
 )
 
 func checkUserExists(id int) bool {
-	query := "SELECT id FROM public.\"user\" WHERE id = $1;"
-
 	var user model.User
 
-	if err := DbConn.QueryRow(query, id).Scan(&user.ID); err != nil {
+	if err := DbConn.QueryRow(SELECT_USERID_BY_ID, id).Scan(&user.ID); err != nil {
 		return false
 	}
 
@@ -23,8 +21,7 @@ func checkUserExists(id int) bool {
 }
 
 func CreateUser(user model.User) (model.User, error) {
-	query := "INSERT INTO public.\"user\" (firstname, lastname) VALUES ($1, $2) RETURNING id;"
-	err := DbConn.QueryRow(query, user.Firstname, user.Lastname).Scan(&user.ID)
+	err := DbConn.QueryRow(INSERT_USER, user.Firstname, user.Lastname).Scan(&user.ID)
 	if err != nil {
 		return user, err
 	}
@@ -38,8 +35,7 @@ func DeleteUser(id int) error {
 		return fmt.Errorf("id does not exist")
 	}
 
-	query := "DELETE FROM public.\"user\" WHERE id = $1;"
-	result, err := DbConn.Exec(query, id)
+	result, err := DbConn.Exec(DELETE_USER_BY_ID, id)
 	if err != nil {
 		return err
 	}
@@ -58,11 +54,9 @@ func DeleteUser(id int) error {
 }
 
 func GetUser(id int) (interface{}, error) {
-	query := "SELECT id, firstname, lastname FROM public.\"user\" WHERE id = $1;"
-
 	var user model.User
 
-	if err := DbConn.QueryRow(query, id).Scan(&user.ID, &user.Firstname, &user.Lastname); err != nil {
+	if err := DbConn.QueryRow(SELECT_USER_BY_ID, id).Scan(&user.ID, &user.Firstname, &user.Lastname); err != nil {
 		log.WithFields(logrus.Fields{
 			"error": err.Error(),
 		}).Error("Error getting user from database in GetUser")
@@ -74,9 +68,7 @@ func GetUser(id int) (interface{}, error) {
 }
 
 func GetUsers() (interface{}, error) {
-	query := "SELECT id, firstname, lastname FROM public.\"user\";"
-
-	rows, err := DbConn.Query(query)
+	rows, err := DbConn.Query(SELECT_USER_ALL)
 	if err != nil {
 		return nil, err
 	}

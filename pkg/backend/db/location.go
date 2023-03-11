@@ -7,9 +7,7 @@ import (
 )
 
 func GetLocations() (interface{}, error) {
-	query := "SELECT id, name FROM public.\"location\";"
-
-	rows, err := DbConn.Query(query)
+	rows, err := DbConn.Query(SELECT_LOCATION_ALL)
 	if err != nil {
 		return nil, err
 	}

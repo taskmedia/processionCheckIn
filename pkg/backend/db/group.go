@@ -7,9 +7,7 @@ import (
 )
 
 func GetGroups() (interface{}, error) {
-	query := "SELECT id, name FROM public.\"group\";"
-
-	rows, err := DbConn.Query(query)
+	rows, err := DbConn.Query(SELECT_GROUP_ALL)
 	if err != nil {
 		return nil, err
 	}
