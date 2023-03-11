@@ -6,6 +6,18 @@ import (
 	"github.com/taskmedia/processionCheckIn/pkg/backend/db/model"
 )
 
+func GetUser(id int) (model.User, error) {
+	query := "SELECT id, firstname, lastname FROM public.\"user\" WHERE id = $1;"
+
+	var user model.User
+
+	if err := DbConn.QueryRow(query, id).Scan(&user.ID, &user.Firstname, &user.Lastname); err != nil {
+		return user, err
+	}
+
+	return user, nil
+}
+
 func GetUsers() ([]model.User, error) {
 	query := "SELECT id, firstname, lastname FROM public.\"user\";"
 
@@ -30,16 +42,4 @@ func GetUsers() ([]model.User, error) {
 	}
 
 	return users, nil
-}
-
-func GetUser(id int) (model.User, error) {
-	query := "SELECT id, firstname, lastname FROM public.\"user\" WHERE id = $1;"
-
-	var user model.User
-
-	if err := DbConn.QueryRow(query, id).Scan(&user.ID, &user.Firstname, &user.Lastname); err != nil {
-		return user, err
-	}
-
-	return user, nil
 }
