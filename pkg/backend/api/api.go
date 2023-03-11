@@ -30,10 +30,10 @@ func ApiRouters(router *gin.RouterGroup) {
 			func(router *gin.RouterGroup) {
 				router.GET("/", group.ListGroupsHandler)
 				router.GET("/list", group.ListGroupsHandler)
-				// router.GET("/:id", nil)
+				router.GET("/:id", NotYetImplementedHandler)
 
-				// router.POST("/", nil)
-				// router.DELETE("/:id", nil)
+				router.POST("/", NotYetImplementedHandler)
+				router.DELETE("/:id", NotYetImplementedHandler)
 			},
 		},
 		{
@@ -41,10 +41,10 @@ func ApiRouters(router *gin.RouterGroup) {
 			func(router *gin.RouterGroup) {
 				router.GET("/", location.ListLocationsHandler)
 				router.GET("/list", location.ListLocationsHandler)
-				// router.GET("/:id", nil)
+				router.GET("/:id", NotYetImplementedHandler)
 
-				// router.POST("/", nil)
-				// router.DELETE("/:id", nil)}
+				router.POST("/", NotYetImplementedHandler)
+				router.DELETE("/:id", NotYetImplementedHandler)
 			},
 		},
 		{
@@ -63,4 +63,10 @@ func ApiRouters(router *gin.RouterGroup) {
 	for _, rg := range routerGroups {
 		generic.HandleGroupRouters(router, rg.path, rg.routers)
 	}
+}
+
+func NotYetImplementedHandler(c *gin.Context) {
+	c.IndentedJSON(501, gin.H{
+		"message": "Not yet implemented",
+	})
 }
