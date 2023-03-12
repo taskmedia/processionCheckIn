@@ -5,7 +5,7 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-func HandlerCreateRequests(c *gin.Context, createFunc func(*gin.Context) (int, error)) {
+func CreateRequests(c *gin.Context, createFunc func(*gin.Context) (int, error)) {
 	id, err := createFunc(c)
 	if err != nil {
 		return
@@ -16,7 +16,7 @@ func HandlerCreateRequests(c *gin.Context, createFunc func(*gin.Context) (int, e
 	})
 }
 
-func HandlerDeleteIdRequest(c *gin.Context, deleteFunc func(id int) error) {
+func DeleteIdRequest(c *gin.Context, deleteFunc func(id int) error) {
 	id, err := getIdFromParam(c, "id")
 	if err != nil {
 		return

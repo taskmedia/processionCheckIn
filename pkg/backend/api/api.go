@@ -26,30 +26,30 @@ func ApiRouters(router *gin.RouterGroup) {
 		{
 			"/groups",
 			func(router *gin.RouterGroup) {
-				router.GET("/", func(c *gin.Context) { handler.HandlerListRequest(c, db.GetGroups) })
-				router.GET("/list", func(c *gin.Context) { handler.HandlerListRequest(c, db.GetGroups) })
+				router.GET("/", func(c *gin.Context) { handler.ListRequest(c, db.GetGroups) })
+				router.GET("/list", func(c *gin.Context) { handler.ListRequest(c, db.GetGroups) })
 				router.GET("/:id", NotYetImplementedHandler)
 
-				router.POST("/", func(c *gin.Context) { handler.HandlerCreateRequests(c, db.CreateGroup) })
+				router.POST("/", func(c *gin.Context) { handler.CreateRequests(c, db.CreateGroup) })
 				router.DELETE("/:id", NotYetImplementedHandler)
 			},
 		},
 		{
 			"/locations",
 			func(router *gin.RouterGroup) {
-				router.GET("/", func(c *gin.Context) { handler.HandlerListRequest(c, db.GetLocations) })
-				router.GET("/list", func(c *gin.Context) { handler.HandlerListRequest(c, db.GetLocations) })
+				router.GET("/", func(c *gin.Context) { handler.ListRequest(c, db.GetLocations) })
+				router.GET("/list", func(c *gin.Context) { handler.ListRequest(c, db.GetLocations) })
 				router.GET("/:id", NotYetImplementedHandler)
 
-				router.POST("/", func(c *gin.Context) { handler.HandlerCreateRequests(c, db.CreateLocation) })
+				router.POST("/", func(c *gin.Context) { handler.CreateRequests(c, db.CreateLocation) })
 				router.DELETE("/:id", NotYetImplementedHandler)
 			},
 		},
 		{
 			"/seasons",
 			func(router *gin.RouterGroup) {
-				router.GET("/", func(c *gin.Context) { handler.HandlerListRequest(c, db.GetSeasons) })
-				router.GET("/list", func(c *gin.Context) { handler.HandlerListRequest(c, db.GetSeasons) })
+				router.GET("/", func(c *gin.Context) { handler.ListRequest(c, db.GetSeasons) })
+				router.GET("/list", func(c *gin.Context) { handler.ListRequest(c, db.GetSeasons) })
 				router.GET("/:id", NotYetImplementedHandler)
 
 				router.POST("/", NotYetImplementedHandler)
@@ -59,18 +59,18 @@ func ApiRouters(router *gin.RouterGroup) {
 		{
 			"/users",
 			func(router *gin.RouterGroup) {
-				router.GET("/", func(c *gin.Context) { handler.HandlerListRequest(c, db.GetUsers) })
-				router.GET("/list", func(c *gin.Context) { handler.HandlerListRequest(c, db.GetUsers) })
-				router.GET("/:id", func(c *gin.Context) { handler.HandlerListIdRequest(c, db.GetUser) })
+				router.GET("/", func(c *gin.Context) { handler.ListRequest(c, db.GetUsers) })
+				router.GET("/list", func(c *gin.Context) { handler.ListRequest(c, db.GetUsers) })
+				router.GET("/:id", func(c *gin.Context) { handler.ListIdRequest(c, db.GetUser) })
 
-				router.POST("/", func(c *gin.Context) { handler.HandlerCreateRequests(c, db.CreateUser) })
-				router.DELETE("/:id", func(c *gin.Context) { handler.HandlerDeleteIdRequest(c, db.DeleteUser) })
+				router.POST("/", func(c *gin.Context) { handler.CreateRequests(c, db.CreateUser) })
+				router.DELETE("/:id", func(c *gin.Context) { handler.DeleteIdRequest(c, db.DeleteUser) })
 			},
 		},
 	}
 
 	for _, rg := range routerGroups {
-		handler.HandlerGroupRouters(router, rg.path, rg.routers)
+		handler.GroupRouters(router, rg.path, rg.routers)
 	}
 }
 

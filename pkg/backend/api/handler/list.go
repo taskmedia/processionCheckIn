@@ -5,7 +5,7 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-func HandlerListIdRequest(c *gin.Context, listIdFunc func(id int) (interface{}, error)) {
+func ListIdRequest(c *gin.Context, listIdFunc func(id int) (interface{}, error)) {
 	id, err := getIdFromParam(c, "id")
 	if err != nil {
 		return
@@ -37,7 +37,7 @@ func HandlerListIdRequest(c *gin.Context, listIdFunc func(id int) (interface{}, 
 	c.IndentedJSON(200, data)
 }
 
-func HandlerListRequest(c *gin.Context, listFunc func() (interface{}, error)) {
+func ListRequest(c *gin.Context, listFunc func() (interface{}, error)) {
 	data, err := listFunc()
 	if err != nil {
 		c.IndentedJSON(500, gin.H{
