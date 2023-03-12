@@ -6,6 +6,7 @@ import (
 	"os"
 
 	_ "github.com/lib/pq"
+	log "github.com/sirupsen/logrus"
 	"github.com/taskmedia/processionCheckIn/pkg/cmd/parameter"
 )
 
@@ -24,6 +25,16 @@ func init() {
 	DbConn, err = sql.Open("postgres", sqlConnStr)
 	if err != nil {
 		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	// Ping the database to make sure the connection is alive.
+	err = DbConn.Ping()
+	if err != nil {
+		log.WithFields(log.Fields{
+			"error": err.Error(),
+		}).Error("Error pinging database")
+
 		os.Exit(1)
 	}
 
