@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"os"
 	"strings"
+
+	log "github.com/sirupsen/logrus"
 )
 
 // server
@@ -32,7 +34,12 @@ func init() {
 		if env := os.Getenv(
 			fmt.Sprintf("PCI_%s", strings.ToUpper(f.Name)),
 		); env != "" {
-			f.Value.Set(env)
+			err := f.Value.Set(env)
+			if err != nil {
+				log.WithFields(log.Fields{
+					"error": err.Error(),
+				}).Error("Error setting flag value from environment variable")
+			}
 		}
 	})
 
