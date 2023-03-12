@@ -1,0 +1,25 @@
+# https://taskfile.dev
+
+version: '3'
+
+tasks:
+  default:
+    cmds:
+    - task: run
+      # silent: true
+
+  build:
+    cmds:
+    - go build -o bin/ ./...
+
+  # lint:
+  #   cmds:
+  #   - golangci-lint run ./...
+
+  run:
+    cmds:
+    - go run ./...
+
+  # test:
+  #   cmds:
+  #   - go test -v ./...
