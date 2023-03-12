@@ -16,6 +16,8 @@ const (
 
 // season
 const (
+	INSERT_SEASON = "INSERT INTO public.\"season\" (name) VALUES ($1) RETURNING id;"
+
 	SELECT_SEASON_ALL = "SELECT id, name FROM public.\"season\";"
 )
 

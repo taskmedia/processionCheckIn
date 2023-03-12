@@ -52,7 +52,7 @@ func ApiRouters(router *gin.RouterGroup) {
 				router.GET("/list", func(c *gin.Context) { handler.ListRequest(c, db.GetSeasons) })
 				router.GET("/:id", NotYetImplementedHandler)
 
-				router.POST("/", NotYetImplementedHandler)
+				router.POST("/", func(c *gin.Context) { handler.CreateRequests(c, db.CreateSeason) })
 				router.DELETE("/:id", NotYetImplementedHandler)
 			},
 		},

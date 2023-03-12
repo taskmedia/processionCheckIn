@@ -194,6 +194,33 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "season",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"2000 / 2001\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/seasons",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"seasons"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
