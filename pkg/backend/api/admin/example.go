@@ -20,7 +20,7 @@ func ExampledataHandler(c *gin.Context) {
 		return
 	}
 
-	c.IndentedJSON(200, gin.H{
-		"message": "Example data loaded",
+	c.IndentedJSON(201, gin.H{
+		"message": "Example data overwritten",
 	})
 }
