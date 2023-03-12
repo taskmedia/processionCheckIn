@@ -3,7 +3,7 @@ package api
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/taskmedia/processionCheckIn/pkg/backend/api/admin"
-	"github.com/taskmedia/processionCheckIn/pkg/backend/api/generic"
+	"github.com/taskmedia/processionCheckIn/pkg/backend/api/handler"
 	"github.com/taskmedia/processionCheckIn/pkg/backend/db"
 )
 
@@ -26,22 +26,22 @@ func ApiRouters(router *gin.RouterGroup) {
 		{
 			"/groups",
 			func(router *gin.RouterGroup) {
-				router.GET("/", func(c *gin.Context) { generic.HandlerListRequest(c, db.GetGroups) })
-				router.GET("/list", func(c *gin.Context) { generic.HandlerListRequest(c, db.GetGroups) })
+				router.GET("/", func(c *gin.Context) { handler.HandlerListRequest(c, db.GetGroups) })
+				router.GET("/list", func(c *gin.Context) { handler.HandlerListRequest(c, db.GetGroups) })
 				router.GET("/:id", NotYetImplementedHandler)
 
-				router.POST("/", func(c *gin.Context) { generic.HandlerCreateRequests(c, db.CreateGroup) })
+				router.POST("/", func(c *gin.Context) { handler.HandlerCreateRequests(c, db.CreateGroup) })
 				router.DELETE("/:id", NotYetImplementedHandler)
 			},
 		},
 		{
 			"/locations",
 			func(router *gin.RouterGroup) {
-				router.GET("/", func(c *gin.Context) { generic.HandlerListRequest(c, db.GetLocations) })
-				router.GET("/list", func(c *gin.Context) { generic.HandlerListRequest(c, db.GetLocations) })
+				router.GET("/", func(c *gin.Context) { handler.HandlerListRequest(c, db.GetLocations) })
+				router.GET("/list", func(c *gin.Context) { handler.HandlerListRequest(c, db.GetLocations) })
 				router.GET("/:id", NotYetImplementedHandler)
 
-				router.POST("/", func(c *gin.Context) { generic.HandlerCreateRequests(c, db.CreateLocation) })
+				router.POST("/", func(c *gin.Context) { handler.HandlerCreateRequests(c, db.CreateLocation) })
 				router.DELETE("/:id", NotYetImplementedHandler)
 			},
 		},
@@ -59,18 +59,18 @@ func ApiRouters(router *gin.RouterGroup) {
 		{
 			"/users",
 			func(router *gin.RouterGroup) {
-				router.GET("/", func(c *gin.Context) { generic.HandlerListRequest(c, db.GetUsers) })
-				router.GET("/list", func(c *gin.Context) { generic.HandlerListRequest(c, db.GetUsers) })
-				router.GET("/:id", func(c *gin.Context) { generic.HandlerListIdRequest(c, db.GetUser) })
+				router.GET("/", func(c *gin.Context) { handler.HandlerListRequest(c, db.GetUsers) })
+				router.GET("/list", func(c *gin.Context) { handler.HandlerListRequest(c, db.GetUsers) })
+				router.GET("/:id", func(c *gin.Context) { handler.HandlerListIdRequest(c, db.GetUser) })
 
-				router.POST("/", func(c *gin.Context) { generic.HandlerCreateRequests(c, db.CreateUser) })
-				router.DELETE("/:id", func(c *gin.Context) { generic.HandlerDeleteIdRequest(c, db.DeleteUser) })
+				router.POST("/", func(c *gin.Context) { handler.HandlerCreateRequests(c, db.CreateUser) })
+				router.DELETE("/:id", func(c *gin.Context) { handler.HandlerDeleteIdRequest(c, db.DeleteUser) })
 			},
 		},
 	}
 
 	for _, rg := range routerGroups {
-		generic.HandlerGroupRouters(router, rg.path, rg.routers)
+		handler.HandlerGroupRouters(router, rg.path, rg.routers)
 	}
 }
 
