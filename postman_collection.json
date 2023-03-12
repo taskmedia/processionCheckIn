@@ -70,7 +70,7 @@
 							"response": []
 						},
 						{
-							"name": ":id",
+							"name": "user",
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -177,6 +177,33 @@
 										"api",
 										"groups",
 										"list"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "group",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Green Day\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/groups",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"groups"
 									]
 								}
 							},

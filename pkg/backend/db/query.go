@@ -2,6 +2,8 @@ package db
 
 // group
 const (
+	INSERT_GROUP = "INSERT INTO public.\"group\" (name) VALUES ($1) RETURNING id;"
+
 	SELECT_GROUP_ALL = "SELECT id, name FROM public.\"group\";"
 )
 

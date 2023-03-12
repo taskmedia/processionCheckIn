@@ -32,7 +32,7 @@ func ApiRouters(router *gin.RouterGroup) {
 				router.GET("/list", group.ListGroupsHandler)
 				router.GET("/:id", NotYetImplementedHandler)
 
-				router.POST("/", NotYetImplementedHandler)
+				router.POST("/", group.CreateGroupHandler)
 				router.DELETE("/:id", NotYetImplementedHandler)
 			},
 		},
