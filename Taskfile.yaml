@@ -20,9 +20,9 @@ tasks:
     cmds:
     - |
       docker run \
-        --name pci \
-        -p 8080:8080 \
         --env PCI_PSQLHOST=host.docker.internal \
+        --name pci \
+        --publish 8080:8080 \
         --rm \
         taskmedia/pci:local
 
