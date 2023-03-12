@@ -235,7 +235,7 @@
 									"script": {
 										"exec": [
 											"pm.test(\"Body response is correct\", function () {",
-											"    var re = /[({\\\"id\\\":\\d+,\\\"firstname\\\":\\\".+\\\",\\\"lastname\\\":\\\".+\\\"},*)*]/;",
+											"    var re = /\\[({\\\"id\\\":\\d+,\\\"firstname\\\":\\\".+\\\",\\\"lastname\\\":\\\".+\\\"},*)*\\]/;",
 											"    pm.expect(pm.response.text().replace(/\\s+/g, '')).to.match(re);",
 											"});",
 											"",
@@ -277,7 +277,7 @@
 									"script": {
 										"exec": [
 											"pm.test(\"Body response is correct\", function () {",
-											"    var re = /[({\\\"id\\\":\\d+,\\\"firstname\\\":\\\".+\\\",\\\"lastname\\\":\\\".+\\\"}]/;",
+											"    var re = /{\\\"id\\\":\\d+,\\\"firstname\\\":\\\".+\\\",\\\"lastname\\\":\\\".+\\\"}/;",
 											"    pm.expect(pm.response.text().replace(/\\s+/g, '')).to.match(re);",
 											"});",
 											"",
@@ -319,7 +319,6 @@
 									"script": {
 										"exec": [
 											"pm.test(\"Body response is correct\", function () {",
-											"    ",
 											"    pm.expect(pm.response.text().replace(/\\s+/g, '')).to.equals('{\"message\":\"resourcedeleted\"}')",
 											"});",
 											"",
