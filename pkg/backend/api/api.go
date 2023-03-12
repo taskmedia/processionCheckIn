@@ -48,8 +48,8 @@ func ApiRouters(router *gin.RouterGroup) {
 		{
 			"/seasons",
 			func(router *gin.RouterGroup) {
-				router.GET("/", NotYetImplementedHandler)
-				router.GET("/list", NotYetImplementedHandler)
+				router.GET("/", func(c *gin.Context) { handler.HandlerListRequest(c, db.GetSeasons) })
+				router.GET("/list", func(c *gin.Context) { handler.HandlerListRequest(c, db.GetSeasons) })
 				router.GET("/:id", NotYetImplementedHandler)
 
 				router.POST("/", NotYetImplementedHandler)

@@ -14,6 +14,11 @@ const (
 	SELECT_LOCATION_ALL = "SELECT id, name FROM public.\"location\";"
 )
 
+// season
+const (
+	SELECT_SEASON_ALL = "SELECT id, name FROM public.\"season\";"
+)
+
 // user
 const (
 	DELETE_USER_BY_ID = "DELETE FROM public.\"user\" WHERE id = $1;"

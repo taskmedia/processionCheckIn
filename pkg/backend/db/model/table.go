@@ -9,6 +9,12 @@ type Location struct {
 	Id   int    `json:"id"`
 	Name string `json:"name"`
 }
+
+type Season struct {
+	Id   int    `json:"id"`
+	Name string `json:"name"`
+}
+
 type User struct {
 	Id        int    `json:"id"`
 	Firstname string `json:"firstname"`
