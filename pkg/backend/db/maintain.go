@@ -1,21 +1,28 @@
 package db
 
-func dropDb() error {
-	err := executePsqlFile("./psql/drop.psql")
-	if err != nil {
-		return err
-	}
+import (
+	_ "embed"
+)
 
-	return nil
+// Embed the SQL scripts into the binary via variable
+
+//go:embed scripts/drop.psql
+var PSQL_SCRIPT_DROP string
+
+//go:embed scripts/exampledata.psql
+var PSQL_SCRIPT_EXAMPLEDATA string
+
+//go:embed scripts/init-table.psql
+var PSQL_SCRIPT_INITTABLE string
+
+func dropDb() error {
+	_, err := DbConn.Exec(PSQL_SCRIPT_DROP)
+	return err
 }
 
 func InitDb() error {
-	err := executePsqlFile("./psql/init-table.psql")
-	if err != nil {
-		return err
-	}
-
-	return nil
+	_, err := DbConn.Exec(PSQL_SCRIPT_INITTABLE)
+	return err
 }
 
 func ResetDb() error {
@@ -33,5 +40,6 @@ func ResetDbExampledata() error {
 		return err
 	}
 
-	return executePsqlFile("./psql/exampledata.psql")
+	_, err = DbConn.Exec(PSQL_SCRIPT_EXAMPLEDATA)
+	return err
 }
