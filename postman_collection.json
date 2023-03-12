@@ -20,7 +20,11 @@
 									"script": {
 										"exec": [
 											"pm.test(\"Body response is correct\", function () {",
-											"    pm.expect(pm.response.text().replace(/\\s+/g, '')).to.equals('{\"message\":\"Databaseinitialized\"}')",
+											"    var cleanResponse = pm.response.text()",
+											"        .replace(/^[^\\S\\r\\n]*/gm, '') // remove leading whitespaces",
+											"        .replace(/(\\r\\n|\\n|\\r)/gm, ''); // remove line breaks",
+											"    ",
+											"    pm.expect(cleanResponse).to.equal('{\"message\": \"Database initialized\"}');",
 											"});",
 											"",
 											"pm.test(\"Response time is less than 200ms\", function () {",
@@ -61,7 +65,11 @@
 									"script": {
 										"exec": [
 											"pm.test(\"Body response is correct\", function () {",
-											"    pm.expect(pm.response.text().replace(/\\s+/g, '')).to.equals('{\"message\":\"Databasereset\"}')",
+											"    var cleanResponse = pm.response.text()",
+											"        .replace(/^[^\\S\\r\\n]*/gm, '') // remove leading whitespaces",
+											"        .replace(/(\\r\\n|\\n|\\r)/gm, ''); // remove line breaks",
+											"    ",
+											"    pm.expect(cleanResponse).to.equals('{\"message\": \"Database reset\"}');",
 											"});",
 											"",
 											"pm.test(\"Response time is less than 200ms\", function () {",
@@ -102,7 +110,11 @@
 									"script": {
 										"exec": [
 											"pm.test(\"Body response is correct\", function () {",
-											"    pm.expect(pm.response.text().replace(/\\s+/g, '')).to.equals('{\"message\":\"Exampledataoverwritten\"}')",
+											"    var cleanResponse = pm.response.text()",
+											"        .replace(/^[^\\S\\r\\n]*/gm, '') // remove leading whitespaces",
+											"        .replace(/(\\r\\n|\\n|\\r)/gm, ''); // remove line breaks",
+											"    ",
+											"    pm.expect(cleanResponse).to.equals('{\"message\": \"Example data overwritten\"}');",
 											"});",
 											"",
 											"pm.test(\"Response time is less than 200ms\", function () {",
@@ -148,8 +160,13 @@
 									"script": {
 										"exec": [
 											"pm.test(\"Body response is correct\", function () {",
-											"    var re = /\\[{\\\"id\\\":\\d+,\\\"name\\\":\\\".+\\\"}*\\]/;",
-											"    pm.expect(pm.response.text().replace(/\\s+/g, '')).to.match(re);",
+											"    var cleanResponse = pm.response.text()",
+											"        .replace(/^[^\\S\\r\\n]*/gm, '') // remove leading whitespaces",
+											"        .replace(/(\\r\\n|\\n|\\r)/gm, ''); // remove line breaks",
+											"    ",
+											"    var re = /\\[{\\\"id\\\": \\d+,\\\"name\\\": \\\".+\\\"}*\\]/;",
+											"    ",
+											"    pm.expect(cleanResponse).to.match(re);",
 											"});",
 											"",
 											"pm.test(\"Response time is less than 200ms\", function () {",
@@ -190,8 +207,13 @@
 									"script": {
 										"exec": [
 											"pm.test(\"Body response is correct\", function () {",
-											"    var re = /{\\\"id\\\":\\d+}/;",
-											"    pm.expect(pm.response.text().replace(/\\s+/g, '')).to.match(re);",
+											"    var cleanResponse = pm.response.text()",
+											"        .replace(/^[^\\S\\r\\n]*/gm, '') // remove leading whitespaces",
+											"        .replace(/(\\r\\n|\\n|\\r)/gm, ''); // remove line breaks",
+											"    ",
+											"    var re = /{\\\"id\\\": \\d+}/;",
+											"    ",
+											"    pm.expect(cleanResponse).to.match(re);",
 											"});",
 											"",
 											"pm.test(\"Response time is less than 200ms\", function () {",
@@ -245,8 +267,13 @@
 									"script": {
 										"exec": [
 											"pm.test(\"Body response is correct\", function () {",
-											"    var re = /\\[{\\\"id\\\":\\d+,\\\"name\\\":\\\".+\\\"}*\\]/;",
-											"    pm.expect(pm.response.text().replace(/\\s+/g, '')).to.match(re);",
+											"    var cleanResponse = pm.response.text()",
+											"        .replace(/^[^\\S\\r\\n]*/gm, '') // remove leading whitespaces",
+											"        .replace(/(\\r\\n|\\n|\\r)/gm, ''); // remove line breaks",
+											"    ",
+											"    var re = /\\[{\\\"id\\\": \\d+,\\\"name\\\": \\\".+\\\"}*\\]/;",
+											"    ",
+											"    pm.expect(cleanResponse).to.match(re);",
 											"});",
 											"",
 											"pm.test(\"Response time is less than 200ms\", function () {",
@@ -287,8 +314,13 @@
 									"script": {
 										"exec": [
 											"pm.test(\"Body response is correct\", function () {",
-											"    var re = /{\\\"id\\\":\\d+}/;",
-											"    pm.expect(pm.response.text().replace(/\\s+/g, '')).to.match(re);",
+											"    var cleanResponse = pm.response.text()",
+											"        .replace(/^[^\\S\\r\\n]*/gm, '') // remove leading whitespaces",
+											"        .replace(/(\\r\\n|\\n|\\r)/gm, ''); // remove line breaks",
+											"    ",
+											"    var re = /{\\\"id\\\": \\d+}/;",
+											"    ",
+											"    pm.expect(cleanResponse).to.match(re);",
 											"});",
 											"",
 											"pm.test(\"Response time is less than 200ms\", function () {",
@@ -342,8 +374,13 @@
 									"script": {
 										"exec": [
 											"pm.test(\"Body response is correct\", function () {",
-											"    var re = /\\[{\\\"id\\\":\\d+,\\\"name\\\":\\\".+\\\"}*\\]/;",
-											"    pm.expect(pm.response.text().replace(/\\s+/g, '')).to.match(re);",
+											"    var cleanResponse = pm.response.text()",
+											"        .replace(/^[^\\S\\r\\n]*/gm, '') // remove leading whitespaces",
+											"        .replace(/(\\r\\n|\\n|\\r)/gm, ''); // remove line breaks",
+											"    ",
+											"    var re = /\\[{\\\"id\\\": \\d+,\\\"name\\\": \\\".+\\\"}*\\]/;",
+											"    ",
+											"    pm.expect(cleanResponse).to.match(re);",
 											"});",
 											"",
 											"pm.test(\"Response time is less than 200ms\", function () {",
@@ -384,8 +421,13 @@
 									"script": {
 										"exec": [
 											"pm.test(\"Body response is correct\", function () {",
-											"    var re = /{\\\"id\\\":\\d+}/;",
-											"    pm.expect(pm.response.text().replace(/\\s+/g, '')).to.match(re);",
+											"    var cleanResponse = pm.response.text()",
+											"        .replace(/^[^\\S\\r\\n]*/gm, '') // remove leading whitespaces",
+											"        .replace(/(\\r\\n|\\n|\\r)/gm, ''); // remove line breaks",
+											"    ",
+											"    var re = /{\\\"id\\\": \\d+}/;",
+											"    ",
+											"    pm.expect(cleanResponse).to.match(re);",
 											"});",
 											"",
 											"pm.test(\"Response time is less than 200ms\", function () {",
@@ -439,8 +481,13 @@
 									"script": {
 										"exec": [
 											"pm.test(\"Body response is correct\", function () {",
-											"    var re = /\\[({\\\"id\\\":\\d+,\\\"firstname\\\":\\\".+\\\",\\\"lastname\\\":\\\".+\\\"},*)*\\]/;",
-											"    pm.expect(pm.response.text().replace(/\\s+/g, '')).to.match(re);",
+											"    var cleanResponse = pm.response.text()",
+											"        .replace(/^[^\\S\\r\\n]*/gm, '') // remove leading whitespaces",
+											"        .replace(/(\\r\\n|\\n|\\r)/gm, ''); // remove line breaks",
+											"    ",
+											"    var re = /\\[({\\\"id\\\": \\d+,\\\"firstname\\\": \\\".+\\\",\\\"lastname\\\": \\\".+\\\"},*)*\\]/;",
+											"",
+											"    pm.expect(cleanResponse).to.match(re);",
 											"});",
 											"",
 											"pm.test(\"Response time is less than 200ms\", function () {",
@@ -481,8 +528,12 @@
 									"script": {
 										"exec": [
 											"pm.test(\"Body response is correct\", function () {",
-											"    var re = /{\\\"id\\\":\\d+,\\\"firstname\\\":\\\".+\\\",\\\"lastname\\\":\\\".+\\\"}/;",
-											"    pm.expect(pm.response.text().replace(/\\s+/g, '')).to.match(re);",
+											"    var cleanResponse = pm.response.text()",
+											"        .replace(/^[^\\S\\r\\n]*/gm, '') // remove leading whitespaces",
+											"        .replace(/(\\r\\n|\\n|\\r)/gm, ''); // remove line breaks",
+											"    ",
+											"    var re = /{\\\"id\\\": \\d+,\\\"firstname\\\": \\\".+\\\",\\\"lastname\\\": \\\".+\\\"}/;",
+											"    pm.expect(cleanResponse).to.match(re);",
 											"});",
 											"",
 											"pm.test(\"Response time is less than 200ms\", function () {",
@@ -523,7 +574,11 @@
 									"script": {
 										"exec": [
 											"pm.test(\"Body response is correct\", function () {",
-											"    pm.expect(pm.response.text().replace(/\\s+/g, '')).to.equals('{\"message\":\"resourcedeleted\"}')",
+											"    var cleanResponse = pm.response.text()",
+											"        .replace(/^[^\\S\\r\\n]*/gm, '') // remove leading whitespaces",
+											"        .replace(/(\\r\\n|\\n|\\r)/gm, ''); // remove line breaks",
+											"    ",
+											"    pm.expect(cleanResponse).to.equals('{\"message\": \"resource deleted\"}');",
 											"});",
 											"",
 											"pm.test(\"Response time is less than 200ms\", function () {",
@@ -564,8 +619,13 @@
 									"script": {
 										"exec": [
 											"pm.test(\"Body response is correct\", function () {",
-											"    var re = /{\\\"id\\\":\\d+}/;",
-											"    pm.expect(pm.response.text().replace(/\\s+/g, '')).to.match(re);",
+											"    var cleanResponse = pm.response.text()",
+											"        .replace(/^[^\\S\\r\\n]*/gm, '') // remove leading whitespaces",
+											"        .replace(/(\\r\\n|\\n|\\r)/gm, ''); // remove line breaks",
+											"    ",
+											"    var re = /{\\\"id\\\": \\d+}/;",
+											"    ",
+											"    pm.expect(cleanResponse).to.match(re);",
 											"});",
 											"",
 											"pm.test(\"Response time is less than 200ms\", function () {",
@@ -616,7 +676,11 @@
 							"script": {
 								"exec": [
 									"pm.test(\"Body response is correct\", function () {",
-									"    pm.expect(pm.response.text().replace(/\\s+/g, '')).to.equals('{\"message\":\"pong\"}')",
+									"    var cleanResponse = pm.response.text()",
+									"        .replace(/^[^\\S\\r\\n]*/gm, '') // remove leading whitespaces",
+									"        .replace(/(\\r\\n|\\n|\\r)/gm, ''); // remove line breaks",
+									"    ",
+									"    pm.expect(cleanResponse).to.equals('{\"message\": \"pong\"}');",
 									"});",
 									"",
 									"pm.test(\"Response time is less than 200ms\", function () {",
@@ -656,8 +720,13 @@
 							"script": {
 								"exec": [
 									"pm.test(\"Body response is correct\", function () {",
-									"    var re = /{\\\"commit\\\":\\\".*\\\",\\\"revision\\\":\\\".*\\\",\\\"version\\\":\\\".+\\\"/",
-									"    pm.expect(pm.response.text().replace(/\\s+/g, '')).to.match(re);",
+									"    var cleanResponse = pm.response.text()",
+									"        .replace(/^[^\\S\\r\\n]*/gm, '') // remove leading whitespaces",
+									"        .replace(/(\\r\\n|\\n|\\r)/gm, ''); // remove line breaks",
+									"    ",
+									"    var re = /{\\\"commit\\\": \\\".*\\\",\\\"revision\\\": \\\".*\\\",\\\"version\\\": \\\".+\\\"/;",
+									"    ",
+									"    pm.expect(cleanResponse).to.match(re);",
 									"});",
 									"",
 									"pm.test(\"Response time is less than 200ms\", function () {",
