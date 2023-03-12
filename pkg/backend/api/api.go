@@ -43,7 +43,7 @@ func ApiRouters(router *gin.RouterGroup) {
 				router.GET("/list", location.ListLocationsHandler)
 				router.GET("/:id", NotYetImplementedHandler)
 
-				router.POST("/", NotYetImplementedHandler)
+				router.POST("/", location.CreateLocationHandler)
 				router.DELETE("/:id", NotYetImplementedHandler)
 			},
 		},

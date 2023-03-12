@@ -9,6 +9,8 @@ const (
 
 // location
 const (
+	INSERT_LOCATION = "INSERT INTO public.\"location\" (name) VALUES ($1) RETURNING id;"
+
 	SELECT_LOCATION_ALL = "SELECT id, name FROM public.\"location\";"
 )
 

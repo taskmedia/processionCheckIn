@@ -232,6 +232,33 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "location",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"London\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/locations",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"locations"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
