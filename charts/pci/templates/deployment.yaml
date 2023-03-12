@@ -26,7 +26,7 @@ spec:
             {{- if not .Values.postgresql.enabled }}
               value: "{{ .Values.db.hostname | required ".Values.db.hostname is required if PSQL is disabled" }}"
             {{- else }}
-              value: "{{ include "app.fullname" . }}-postgresql"
+              value: "{{ .Release.Name }}-postgresql"
             {{- end }}
             - name: "PCI_PSQLPORT"
               value: "{{ .Values.db.port }}"
