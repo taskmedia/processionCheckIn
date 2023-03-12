@@ -8,14 +8,6 @@ import (
 func HandleCreateRequests(c *gin.Context, createFunc func(*gin.Context) (int, error)) {
 	id, err := createFunc(c)
 	if err != nil {
-		c.IndentedJSON(500, gin.H{
-			"message": "Internal server error",
-		})
-
-		log.WithFields(log.Fields{
-			"error": err.Error(),
-		}).Error("Error creating item in database in HandleCreateRequests")
-
 		return
 	}
 
