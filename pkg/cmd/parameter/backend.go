@@ -19,9 +19,9 @@ var LogLevel = flag.String("loglevel", "default", "Log level")
 // PSQL
 var PsqlHost = flag.String("psqlhost", "localhost", "PostgreSQL host")
 var PsqlPort = flag.Int("psqlport", 5432, "PostgreSQL port")
-var PsqlUser = flag.String("psqluser", "postgres", "PostgreSQL user")
+var PsqlUser = flag.String("psqluser", "pci", "PostgreSQL user")
 var PsqlPassword = flag.String("psqlpassword", "pci-psql-password", "PostgreSQL password")
-var PsqlDb = flag.String("psqldb", "postgres", "PostgreSQL database")
+var PsqlDb = flag.String("psqldb", "pci-db", "PostgreSQL database")
 
 func init() {
 	// override default values with environment variables or command line flags
