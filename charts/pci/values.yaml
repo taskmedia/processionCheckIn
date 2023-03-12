@@ -1,11 +1,27 @@
 image:
   repository: taskmedia/pci
   tag: ""
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 8080
+
+db:
+  hostname: ""
+  port: &dbPort 5432
+  username: &dbUsername pci
+  password: &dbPassword pci-psql-password
+  database: &dbDatabase pci-db
 
 postgresql:
   enabled: true
 
-  global:
-    postgresql:
-      auth:
-        postgresPassword: "pci-psql-password"
+  auth:
+    enablePostgresUser: false
+    username: *dbUsername
+    password: *dbPassword
+    database: *dbDatabase
+
+  containerPorts:
+    postgresql: *dbPort

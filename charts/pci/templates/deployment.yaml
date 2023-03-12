@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ include "app.fullname" . }}"
+  labels:
+    {{- include "app.labels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "app.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "app.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.service.port }}
+              protocol: TCP
+          env:
+            - name: "PCI_PSQLHOST"
+            {{- if not .Values.postgresql.enabled }}
+              value: "{{ .Values.db.hostname | required ".Values.db.hostname is required if PSQL is disabled" }}"
+            {{- else }}
+              value: "{{ include "app.fullname" . }}-postgresql"
+            {{- end }}
+            - name: "PCI_PSQLPORT"
+              value: "{{ .Values.db.port }}"
+            - name: "PCI_PSQLUSER"
+              value: "{{ .Values.db.username }}"
+            - name: "PCI_PSQLPASSWORD"
+              value: "{{ .Values.db.password }}"
+            - name: "PCI_PSQLDB"
+              value: "{{ .Values.db.database }}"
+          # livenessProbe:
+          #   httpGet:
+          #     path: /
+          #     port: http
+          # readinessProbe:
+          #   httpGet:
+          #     path: /
+          #     port: http
