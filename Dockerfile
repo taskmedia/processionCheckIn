@@ -1,15 +1,13 @@
 FROM golang:alpine AS build
 
-ARG RELEASE_VERSION="dev"
-ARG RELEASE_REVISION="unknown"
 ARG RELEASE_COMMIT=""
+ARG RELEASE_VERSION="dev"
 
 WORKDIR /build
 COPY . /build
 
 RUN go build \
   -ldflags "-X github.com/taskmedia/processionCheckIn/pkg/version.VERSION=${RELEASE_VERSION}" \
-  -ldflags "-X github.com/taskmedia/processionCheckIn/pkg/version.REVISION=${RELEASE_REVISION}" \
   -ldflags "-X github.com/taskmedia/processionCheckIn/pkg/version.COMMIT=${RELEASE_COMMIT}" \
   -o bin/pci \
   cmd/backend/main.go
