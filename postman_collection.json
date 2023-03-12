@@ -229,6 +229,29 @@
 					"item": [
 						{
 							"name": "list",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Body response is correct\", function () {",
+											"    var re = /[({\\\"id\\\":\\d+,\\\"firstname\\\":\\\".+\\\",\\\"lastname\\\":\\\".+\\\"},*)*]/;",
+											"    pm.expect(pm.response.text().replace(/\\s+/g, '')).to.match(re);",
+											"});",
+											"",
+											"pm.test(\"Response time is less than 200ms\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"",
+											"pm.test(\"Successful POST request\", function () {",
+											"    pm.expect(pm.response.code).to.be.oneOf([200]);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -248,6 +271,29 @@
 						},
 						{
 							"name": ":id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Body response is correct\", function () {",
+											"    var re = /[({\\\"id\\\":\\d+,\\\"firstname\\\":\\\".+\\\",\\\"lastname\\\":\\\".+\\\"}]/;",
+											"    pm.expect(pm.response.text().replace(/\\s+/g, '')).to.match(re);",
+											"});",
+											"",
+											"pm.test(\"Response time is less than 200ms\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"",
+											"pm.test(\"Successful POST request\", function () {",
+											"    pm.expect(pm.response.code).to.be.oneOf([200]);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -267,6 +313,29 @@
 						},
 						{
 							"name": ":id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Body response is correct\", function () {",
+											"    ",
+											"    pm.expect(pm.response.text().replace(/\\s+/g, '')).to.equals('{\"message\":\"resourcedeleted\"}')",
+											"});",
+											"",
+											"pm.test(\"Response time is less than 200ms\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"",
+											"pm.test(\"Successful POST request\", function () {",
+											"    pm.expect(pm.response.code).to.be.oneOf([200]);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
 								"method": "DELETE",
 								"header": [],
@@ -292,7 +361,8 @@
 									"script": {
 										"exec": [
 											"pm.test(\"Body response is correct\", function () {",
-											"    pm.expect(pm.response.text().replace(/\\s+/g, '')).to.match(/{\\\"id\\\":\\d+}/);",
+											"    var re = /{\\\"id\\\":\\d+}/;",
+											"    pm.expect(pm.response.text().replace(/\\s+/g, '')).to.match(re);",
 											"});",
 											"",
 											"pm.test(\"Response time is less than 200ms\", function () {",
