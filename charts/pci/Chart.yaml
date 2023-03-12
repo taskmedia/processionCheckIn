@@ -1,5 +1,5 @@
 apiVersion: v2
-name: processionCheckIn
+name: processioncheckin
 description: |
   Helm chart to deploy processionCheckIn application
 
