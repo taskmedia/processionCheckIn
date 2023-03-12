@@ -2,7 +2,7 @@ package api
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/taskmedia/processionCheckIn/pkg/backend/api/db"
+	"github.com/taskmedia/processionCheckIn/pkg/backend/api/admin"
 	"github.com/taskmedia/processionCheckIn/pkg/backend/api/generic"
 	"github.com/taskmedia/processionCheckIn/pkg/backend/api/group"
 	"github.com/taskmedia/processionCheckIn/pkg/backend/api/location"
@@ -18,11 +18,11 @@ func ApiRouters(router *gin.RouterGroup) {
 		routers func(router *gin.RouterGroup)
 	}{
 		{
-			"/db",
+			"/admin",
 			func(router *gin.RouterGroup) {
-				router.GET("/init", db.InitHandler)
-				router.GET("/reset", db.ResetHandler)
-				router.GET("/exampledata", db.ExampledataHandler)
+				router.GET("/init", admin.InitHandler)
+				router.GET("/reset", admin.ResetHandler)
+				router.GET("/exampledata", admin.ExampledataHandler)
 			},
 		},
 		{
