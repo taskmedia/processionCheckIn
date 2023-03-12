@@ -18,9 +18,9 @@ func ApiRouters(router *gin.RouterGroup) {
 		{
 			"/admin",
 			func(router *gin.RouterGroup) {
+				router.GET("/exampledata", admin.ExampledataHandler)
 				router.GET("/init", admin.InitHandler)
 				router.GET("/reset", admin.ResetHandler)
-				router.GET("/exampledata", admin.ExampledataHandler)
 			},
 		},
 		{
