@@ -48,6 +48,17 @@ func ApiRouters(router *gin.RouterGroup) {
 			},
 		},
 		{
+			"/seasons",
+			func(router *gin.RouterGroup) {
+				router.GET("/", NotYetImplementedHandler)
+				router.GET("/list", NotYetImplementedHandler)
+				router.GET("/:id", NotYetImplementedHandler)
+
+				router.POST("/", NotYetImplementedHandler)
+				router.DELETE("/:id", NotYetImplementedHandler)
+			},
+		},
+		{
 			"/users",
 			func(router *gin.RouterGroup) {
 				router.GET("/", user.ListUsersHandler)
