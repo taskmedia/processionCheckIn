@@ -234,7 +234,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"name\": \"Green Day\"\n}",
+									"raw": "{\n    \"name\": \"{{group}}\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -341,7 +341,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"name\": \"London\"\n}",
+									"raw": "{\n    \"name\": \"{{location}}\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -448,7 +448,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"name\": \"2000 / 2001\"\n}",
+									"raw": "{\n    \"name\": \"{{season}}\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -646,7 +646,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"firstname\": \"Max\",\n    \"lastname\": \"Mustermann\"\n}",
+									"raw": "{\n    \"firstname\": \"{{firstname}}\",\n    \"lastname\": \"{{lastname}}\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -790,6 +790,31 @@
 		{
 			"key": "userid",
 			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "firstname",
+			"value": "Max",
+			"type": "string"
+		},
+		{
+			"key": "lastname",
+			"value": "Musternann",
+			"type": "string"
+		},
+		{
+			"key": "group",
+			"value": "Green Day",
+			"type": "string"
+		},
+		{
+			"key": "location",
+			"value": "London",
+			"type": "string"
+		},
+		{
+			"key": "season",
+			"value": "2023/24",
 			"type": "string"
 		}
 	]
