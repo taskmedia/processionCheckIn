@@ -12,7 +12,7 @@ import (
 
 var DbConn *sql.DB
 
-func init() {
+func InitDbConn() {
 	var err error
 	sqlConnStr := fmt.Sprintf("dbname=%s user=%s password=%s host=%s port=%d sslmode=disable",
 		*parameter.PsqlDb,
