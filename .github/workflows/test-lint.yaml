@@ -19,7 +19,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up Go 1.x
+      - name: Set up Go
         uses: actions/setup-go@v5
         with:
           go-version-file: "go.mod"
@@ -29,8 +29,8 @@ jobs:
           version: 3.x
           repo-token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Run lint
-        run: task lint
+      - name: Run golangci-lint
+        uses: golangci/golangci-lint-action@v4.0.0
 
       - name: Run tests
         run: task test
