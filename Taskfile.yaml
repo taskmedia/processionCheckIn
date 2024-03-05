@@ -26,14 +26,14 @@ tasks:
         --rm \
         taskmedia/pci:local
 
-  # lint:
-  #   cmds:
-  #   - golangci-lint run ./...
+  lint:
+    cmds:
+    - golangci-lint run ./...
 
   run:
     cmds:
     - go run ./...
 
-  # test:
-  #   cmds:
-  #   - go test -v ./...
+  test:
+    cmds:
+    - go test -v ./...
